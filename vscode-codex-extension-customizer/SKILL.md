@@ -1,6 +1,6 @@
 ---
 name: vscode-codex-extension-customizer
-description: Re-evaluate the latest VS Code Codex extension after an update and reapply this user's personal customizations for first-line thread titles and 20-task sidebar display when needed. Use when the user says the Codex VS Code extension updated, behavior changed, the customizations may have been reset, or they want to apply the same customization on another Windows or Mac machine. Designed to work reliably even with low reasoning effort.
+description: Re-evaluate the latest VS Code Codex extension after an update, reapply this user's personal customizations for first-line thread titles and 20-task sidebar display when needed, and record project-specific application history under docs/. Use when the user says the Codex VS Code extension updated, behavior changed, the customizations may have been reset, or they want to apply the same customization on another Windows or Mac machine. Designed to work reliably even with low reasoning effort.
 ---
 
 # VS Code Codex Extension Customizer
@@ -29,13 +29,16 @@ This is not an official extension setting. It is a local, user-owned customizati
 - `extension.js.bak-YYYY-MM-DD`
 - `index-*.js.bak-YYYY-MM-DD`
 7. Reapply only the minimal string replacements needed for the current version.
-8. If the target project has operational docs for this customization, update only the current references there. If it does not, skip doc updates and report that no project docs were updated.
-- `AGENTS.md`
-- `README.md`
-- `docs/TASK_PROMPT_TEMPLATE.md`
-- `docs/LINK_PROMPT_TEMPLATE.md`
-- `docs/CODEX_KNOWHOW.md`
-9. Add a new knowhow entry instead of rewriting past entries.
+8. Record project-specific work under the target project's `docs/` directory. Prefer an existing extension-customizer history document; otherwise create one such as `docs/VSCODE_CODEX_EXTENSION_CUSTOMIZER_APPLY_LOG.md`.
+9. For each application run, append a new entry instead of rewriting past entries. Include:
+- date
+- target OS and machine context when known
+- resolved extension folder
+- extension version
+- files changed
+- backup files created
+- validation results
+- issues, risks, or follow-up tasks for that run
 10. Finish with a short report: changed files, why, impact, and `Developer: Reload Window`.
 
 ## Cross-Machine Notes
@@ -53,7 +56,7 @@ This is not an official extension setting. It is a local, user-owned customizati
 - Confirm whether the title customization is missing before patching.
 - Confirm whether the Tasks sidebar display customization is missing before patching.
 - Confirm backups exist after patching.
-- If project docs were updated, confirm they point to the latest extension version and backup date.
+- Confirm the target project's `docs/` entry records the latest extension version, backup date, validation results, and per-run issues or follow-up tasks.
 
 ## Required Output Style
 
@@ -71,5 +74,5 @@ Before finishing, check all of the following:
 - `out/extension.js` contains the first-line title branch after patching.
 - The latest `index-*.js` contains `slice(0,Math.max(20,e.length))` and no longer contains `slice(0,Math.max(3,e.length))`.
 - Both dated backup files exist.
-- If present and updated, `AGENTS.md`, `README.md`, `docs/TASK_PROMPT_TEMPLATE.md`, and `docs/LINK_PROMPT_TEMPLATE.md` point to the latest extension version.
-- If present and updated, `docs/CODEX_KNOWHOW.md` has a new numbered entry for the run.
+- A project-specific document under `docs/` records the run.
+- The `docs/` entry includes the extension version, changed files, backup files, validation results, and issues or follow-up tasks for that application.
