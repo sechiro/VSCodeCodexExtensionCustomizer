@@ -1,0 +1,7 @@
+interface:
+  display_name: "VS Code Codex Extension Customizer"
+  short_description: "Apply this user's Codex VS Code extension customizations on Windows or Mac"
+  default_prompt: "Use $vscode-codex-extension-customizer to check the latest VS Code Codex extension on this machine and reapply this user's personal customizations if needed. Keep the workflow compact so it works well even at low reasoning effort."
+
+policy:
+  allow_implicit_invocation: true
