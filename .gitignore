@@ -5,3 +5,9 @@ Thumbs.db
 # Local scratch files
 *.bak
 *.tmp
+
+# Generated local workspace files may contain absolute local paths
+workspaces/
+
+# Project-specific application logs should be created in the target project, not this public template repository
+docs/VSCODE_CODEX_EXTENSION_CUSTOMIZER_APPLY_LOG.md

@@ -1,0 +1,7 @@
+interface:
+  display_name: "VS Code Workspace Add"
+  short_description: "Create decorated VS Code workspace files for parallel project work"
+  default_prompt: "Use $vscode-workspace-add to create a decorated VS Code .code-workspace file for the provided project path in this repository's workspaces directory."
+
+policy:
+  allow_implicit_invocation: true
