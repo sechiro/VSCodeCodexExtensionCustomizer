@@ -25,21 +25,26 @@ This is not an official extension setting. It is a local, user-owned customizati
 5. In the latest `index-*.js`, verify whether the Tasks sidebar still shows only 3 items:
 - look for `slice(0,Math.max(3,e.length))`
 - if present, change it to `slice(0,Math.max(20,e.length))`
-6. Before changing either file, create dated backups beside the originals:
+6. If the exact `slice(0,Math.max(...))` pattern is absent, inspect the sidebar list implementation around `sidebarElectron.showMore` and the `maxItems:` props. Newer builds may use minified constants instead of the old inline slice. In that case:
+- identify the constants passed to `maxItems:` for grouped project chats and recent chats
+- back up the current `index-*.js`
+- change only those display-count constants to `20`
+- record the exact constants changed in the docs log
+7. Before changing either file, create dated backups beside the originals:
 - `extension.js.bak-YYYY-MM-DD`
 - `index-*.js.bak-YYYY-MM-DD`
-7. Reapply only the minimal string replacements needed for the current version.
-8. Record project-specific work under the target project's `docs/` directory. Prefer an existing extension-customizer history document; otherwise create one such as `docs/VSCODE_CODEX_EXTENSION_CUSTOMIZER_APPLY_LOG.md`.
-9. For each application run, append a new entry instead of rewriting past entries. Include:
+8. Reapply only the minimal string replacements needed for the current version.
+9. Record project-specific work under the target project's `docs/` directory. Prefer an existing extension-customizer history document; otherwise create one such as `docs/VSCODE_CODEX_EXTENSION_CUSTOMIZER_APPLY_LOG.md`.
+10. For each application run, append a new entry instead of rewriting past entries. Include:
 - date
-- target OS and machine context when known
+- target OS and machine context when known; keep Windows and macOS runs distinguishable in the entry text
 - resolved extension folder
 - extension version
 - files changed
 - backup files created
 - validation results
 - issues, risks, or follow-up tasks for that run
-10. Finish with a short report: changed files, why, impact, and `Developer: Reload Window`.
+11. Finish with a short report: changed files, why, impact, and `Developer: Reload Window`.
 
 ## Cross-Machine Notes
 
@@ -72,7 +77,7 @@ Before finishing, check all of the following:
 - The latest extension folder was identified.
 - The extension folder path matches the current machine, not a stale path copied from this repository.
 - `out/extension.js` contains the first-line title branch after patching.
-- The latest `index-*.js` contains `slice(0,Math.max(20,e.length))` and no longer contains `slice(0,Math.max(3,e.length))`.
+- The latest `index-*.js` contains either `slice(0,Math.max(20,e.length))` and no longer contains `slice(0,Math.max(3,e.length))`, or the current build's sidebar `maxItems:` constants have been changed to `20` and the former lower constants are absent.
 - Both dated backup files exist.
 - A project-specific document under `docs/` records the run.
 - The `docs/` entry includes the extension version, changed files, backup files, validation results, and issues or follow-up tasks for that application.
